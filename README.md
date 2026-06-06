@@ -92,7 +92,7 @@ Current prototype covers **6 chunks** across driving license services:
 
 ### Step 1 — Clone the repository
 ```bash
-git clone https://github.com/YOUR_USERNAME/dotm-chatbot.git
+git clone https://github.com/shashwatsrma/dotm-sewa-chatbot.git
 cd dotm-chatbot
 ```
 
