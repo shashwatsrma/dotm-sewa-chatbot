@@ -1,0 +1,22 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Embeddings cache
+embeddings_cache.pkl
+
+# Environment
+.env
+
+# Mac
+.DS_Store
+
+# VS Code
+.vscode/
+
+# Model cache (large files, no need to push)
+.cache/

@@ -1,0 +1,58 @@
+[
+    {
+  "chunk_id": "dotm_dl_new_office",
+  "section": "Pages 2-11",
+  "service_category": "driving_license",
+  "topic": "नयाँ लाइसेन्स कसरी बनाउने? (कार्यालयमा स्वास्थ्य परीक्षण) पहिलोपटक नयाँ लाइसेन्स कसरी बनाउने? नयाँ आवेदक first time new license apply",
+  "content": "१. applydlnew.dotm.gov.np मा जानुहोस् २. मोबाइल नम्बर र captcha हाल्नुहोस् ३. SMS बाट आएको MPIN हाल्नुहोस् ४. नयाँ आवेदक छान्नुहोस् ५. नागरिकता नम्बर र व्यक्तिगत विवरण भर्नुहोस् ६. नागरिकताको अगाडि र पछाडिको फोटो अपलोड गर्नुहोस् (१ MB भन्दा कम) ७. विवरण सही छ भने Next थिच्नुहोस् — पछि परिवर्तन गर्न पाइँदैन ८. Dashboard मा Apply for New License छान्नुहोस् ९. कार्यालयमा स्वास्थ्य परीक्षण गर्ने विकल्प छान्नुहोस् १०. सवारी वर्ग छान्नुहोस् (A=मोटरसाइकल, B=कार/जीप, C=टेम्पो, आदि) ११. कार्यालय र मिति छान्नुहोस् १२. Application download गरी print गर्नुहोस् १३. छानिएको मितिमा Original नागरिकता र application लिएर कार्यालय जानुहोस्",
+  "summary": "नयाँ लाइसेन्सको लागि पहिले अनलाइन दर्ता गर्नुहोस्, वर्ग र कार्यालय छान्नुहोस्, appointment लिनुहोस् र छानिएको दिन कार्यालय जानुहोस्।",
+  "needs_verification": false
+}
+,
+{
+  "chunk_id": "dotm_dl_new_clinic",
+  "section": "Pages 12-14",
+  "service_category": "driving_license",
+  "topic": "नयाँ लाइसेन्स — बाहिरको क्लिनिकमा स्वास्थ्य परीक्षण गर्न चाहेमा के गर्ने?",
+  "content": "१. Apply for License मा गई बाहिरको Doctor/Clinic विकल्प छान्नुहोस् २. सवारी वर्ग र कार्यालय छान्नुहोस् ३. सूचीमा भएका Doctor मध्ये एक छान्नुहोस् ४. Submit गर्नुहोस् — Doctor को नाम, क्लिनिक र फोन नम्बर देखिनेछ ५. त्यो क्लिनिकमा गई स्वास्थ्य परीक्षण गराउनुहोस् ६. Approve भएपछि Dashboard बाट appointment लिनुहोस् ७. Approval ३ दिनभन्दा बढी Pending रह्यो भने कार्यालय जानुहोस्",
+  "summary": "आफ्नो मन परेको सूचीकृत Doctor कहाँ स्वास्थ्य परीक्षण गर्न सकिन्छ। Approve भएपछि मात्र appointment लिन पाइन्छ।",
+  "needs_verification": false
+},
+{
+  "chunk_id": "dotm_dl_renewal",
+  "section": "Pages 17-19",
+  "service_category": "driving_license",
+  "topic": "लाइसेन्स नवीकरण कसरी गर्ने?",
+  "content": "१. applydlnew.dotm.gov.np मा जानुहोस् २. मोबाइल नम्बर र MPIN हाल्नुहोस् ३. 'हो, मसँग नेपाली लाइसेन्स छ' विकल्प छान्नुहोस् ४. लाइसेन्स नम्बर र जन्म मिति (AD) हाल्नुहोस् ५. Dashboard मा Renew Your License छान्नुहोस् ६. कार्यालय र Doctor छान्नी Submit गर्नुहोस् ७. स्वास्थ्य परीक्षण गराउनुहोस् र Approve हुनुहोस् ८. Online payment गर्नुहोस् — eSewa, Khalti वा connectIPS बाट। नवीकरण शुल्क A र B वर्ग सँगै भए रु. २०००",
+  "summary": "पुरानो लाइसेन्स नम्बर लिएर अनलाइन login गर्नुहोस्, Renew छान्नुहोस्, स्वास्थ्य परीक्षण गराउनुहोस् र online payment गर्नुहोस्।",
+  "needs_verification": false
+}
+,
+{
+  "chunk_id": "dotm_dl_add_category",
+  "section": "Page 22",
+  "service_category": "driving_license",
+  "topic": "पुरानो existing लाइसेन्समा थप add new category motorcycle car existing license holder",
+  "content": "१. applydlnew.dotm.gov.np मा login गर्नुहोस् २. लाइसेन्स नम्बर र जन्म मिति हाल्नुहोस् ३. Dashboard मा Apply for Add Category छान्नुहोस् ४. नयाँ लाइसेन्स जस्तै प्रक्रिया दोहोर्याउनुहोस् ५. Appointment application print गरी छानिएको कार्यालय जानुहोस् ६. Payment online गर्न सकिन्छ",
+  "summary": "मोटरसाइकल लाइसेन्स भएकालाई कार थप्न Add Category प्रक्रिया नयाँ लाइसेन्स जस्तै हो — अनलाइन दर्ता, स्वास्थ्य परीक्षण, appointment र कार्यालय भ्रमण।",
+  "needs_verification": false
+},
+{
+  "chunk_id": "dotm_dl_categories",
+  "section": "Page 9",
+  "service_category": "driving_license",
+  "topic": "all license categories list Nepal K A B C E H what vehicle types motorcycle car tempo tractor license categories Nepal सबै लाइसेन्स वर्गहरू सूची",
+  "content": "K = Scooter, Moped | A = Motorcycle, Scooter, Moped | B = Car, Jeep, Delivery Van | C = Tempo, Auto Rickshaw | C1 = E-Rickshaw | E = Tractor | H = Road Roller, Dozer | H1 = Dozer | H2 = Road Roller | I = Crane, Fire Brigade, Loader | I1 = Crane | I2 = Fire Brigade | I3 = Loader | J1 = Excavator | J2 = Backhoe Loader | J3 = Grader | J4 = Forklift | J5 = Other Heavy Equipment",
+  "summary": "A वर्ग मोटरसाइकलको लागि, B वर्ग कार/जीपको लागि, C वर्ग टेम्पोको लागि हो।",
+  "needs_verification": false
+},
+{
+  "chunk_id": "dotm_dl_warnings",
+  "section": "Pages 2-8",
+  "service_category": "driving_license",
+  "topic": "अनलाइन लाइसेन्स आवेदन गर्दा ध्यान दिनुपर्ने महत्वपूर्ण कुराहरू",
+  "content": "१. एउटै मोबाइल नम्बरले मात्र दर्ता गर्नुहोस् — एउटै नम्बरबाट धेरै account बनाउन पाइँदैन २. विवरण Submit गरेपछि परिवर्तन गर्न पाइँदैन — ध्यानपूर्वक भर्नुहोस् ३. नागरिकताको विवरण MOHA को रेकर्डसँग मिल्नुपर्छ ४. नागरिकताको फोटो १ MB भन्दा कम हुनुपर्छ ५. प्रयोगात्मक परीक्षाको दिन जुत्ता लगाउनु अनिवार्य छ ६. लिखित र प्रयोगात्मक परीक्षा केन्द्रमा मोबाइल फोन निषेध छ ७. Biometric को लागि आइतबार देखि बुधबार मात्र कार्यालय जान मिल्छ",
+  "summary": "आवेदन गर्नुअघि यी कुराहरू ध्यान दिनुहोस् — एउटै मोबाइल, सही विवरण, सही फोटो साइज, परीक्षामा जुत्ता र मोबाइल निषेध।",
+  "needs_verification": false
+}
+]
