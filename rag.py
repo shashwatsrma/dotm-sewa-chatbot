@@ -136,8 +136,9 @@ User Question: {question}"""
             {"role": "user", "content": user_message}
         ]
     )
-    
-    return response["message"]["content"]
+    answer = response["message"]["content"]
+    return answer
+    # return response["message"]["content"]
 
 
 # Step 6 — Simple test loop
