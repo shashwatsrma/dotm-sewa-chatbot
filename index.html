@@ -15,7 +15,7 @@
 
   <input id="user-input" type="text" placeholder="Type your question..." style="width:70%" />
   <button onclick="sendMessage()">Send</button>
-  <button id="mic-btn" onclick="toggleVoice()">🎤</button>
+  <!-- <button id="mic-btn" onclick="toggleVoice()">🎤</button> -->
 
   <script>
     const SERVER = "http://127.0.0.1:5000/chat";
@@ -53,28 +53,28 @@
       div.scrollIntoView();
     }
 
-    // Voice input
-    let recognition;
-    function toggleVoice() {
-      if (!("webkitSpeechRecognition" in window || "SpeechRecognition" in window)) {
-        alert("Voice input only works in Chrome.");
-        return;
-      }
-      if (!recognition) {
-        recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-        recognition.lang = "ne-NP";
-        recognition.onresult = (e) => {
-          document.getElementById("user-input").value = e.results[0][0].transcript;
-          toggleVoice();
-          sendMessage();
-        };
-        recognition.onend = () => {
-          document.getElementById("mic-btn").textContent = "🎤";
-        };
-      }
-      document.getElementById("mic-btn").textContent = "🔴";
-      recognition.start();
-    }
+    // // Voice input
+    // let recognition;
+    // function toggleVoice() {
+    //   if (!("webkitSpeechRecognition" in window || "SpeechRecognition" in window)) {
+    //     alert("Voice input only works in Chrome.");
+    //     return;
+    //   }
+    //   if (!recognition) {
+    //     recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    //     recognition.lang = "ne-NP";
+    //     recognition.onresult = (e) => {
+    //       document.getElementById("user-input").value = e.results[0][0].transcript;
+    //       toggleVoice();
+    //       sendMessage();
+    //     };
+    //     recognition.onend = () => {
+    //       document.getElementById("mic-btn").textContent = "🎤";
+    //     };
+    //   }
+    //   document.getElementById("mic-btn").textContent = "🔴";
+    //   recognition.start();
+    // }
 
     // Press Enter to send
     document.getElementById("user-input").addEventListener("keydown", (e) => {
