@@ -2,32 +2,69 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>DoTM Sewa Chatbot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DoTM Sewa — Nepal Transport Assistant</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <h2>DoTM Sewa Chatbot</h2>
-  <p>Ask in Nepali, English, or Romanized Nepali</p>
-
-  <div id="messages" style="height:400px; overflow-y:auto; border:1px solid #ccc; padding:10px; margin-bottom:10px;">
-    <div><b>Bot:</b> नमस्ते! सवारी सम्बन्धी जानकारीको लागि सोध्नुहोस्। Hello! Ask me anything about DoTM driving license services.</div>
+  <div class="header">
+    <div class="emblem">🏛️</div>
+    <div class="header-text">
+      <h1>DoTM सेवा सहायक</h1>
+      <p>Department of Transport Management · Nepal</p>
+    </div>
+    <div class="status-dot">
+      <div class="dot"></div>
+      Online
+    </div>
   </div>
 
-  <input id="user-input" type="text" placeholder="Type your question..." style="width:70%" />
-  <button onclick="sendMessage()">Send</button>
-  <!-- <button id="mic-btn" onclick="toggleVoice()">🎤</button> -->
+  <div class="chat-window">
+    <div class="messages" id="messages">
+      <div class="message bot">
+        <div class="avatar">🏛️</div>
+        <div class="bubble">नमस्ते! म DoTM सेवा सहायक हुँ।<br><br>सवारी चालक अनुमतिपत्र, नवीकरण, वर्ग थप लगायत यातायात सम्बन्धी जुनसुकै जानकारी Nepali, English वा Romanized Nepali मा सोध्नुहोस्।</div>
+      </div>
+    </div>
+
+    <div class="input-bar">
+      <div class="input-wrap">
+        <input id="user-input" type="text" placeholder="सोध्नुहोस् / Ask your question..." />
+      </div>
+      <button class="send-btn" onclick="sendMessage()" title="Send">➤</button>
+    </div>
+  </div>
+
+  <div class="suggestions">
+    <div class="suggestion" onclick="ask('नयाँ लाइसेन्स कसरी बनाउने?')">नयाँ लाइसेन्स</div>
+    <div class="suggestion" onclick="ask('How to renew my license?')">Renew License</div>
+    <div class="suggestion" onclick="ask('What are all license categories?')">License Categories</div>
+    <div class="suggestion" onclick="ask('add category kasari garne?')">Add Category</div>
+    <div class="suggestion" onclick="ask('online payment kasari garne?')">Online Payment</div>
+    <div class="suggestion" onclick="ask('अनलाइन आवेदनमा के ध्यान दिने?')">Important Tips</div>
+  </div>
+
+  <div class="footer">
+    Powered by Gemma2 · RAG · <a href="https://applydlnew.dotm.gov.np" target="_blank">applydlnew.dotm.gov.np</a>
+  </div>
 
   <script>
     const SERVER = "http://127.0.0.1:5000/chat";
+
+    function ask(question) {
+      document.getElementById("user-input").value = question;
+      sendMessage();
+    }
 
     async function sendMessage() {
       const input = document.getElementById("user-input");
       const text = input.value.trim();
       if (!text) return;
 
-      addMessage("You", text);
+      addMessage("user", text);
       input.value = "";
-      addMessage("Bot", "Thinking...", "thinking");
+      addTyping();
 
       try {
         const res = await fetch(SERVER, {
@@ -36,47 +73,58 @@
           body: JSON.stringify({ message: text })
         });
         const data = await res.json();
-        document.getElementById("thinking").remove();
-        addMessage("Bot", data.reply);
+        removeTyping();
+        addMessage("bot", data.reply);
       } catch (e) {
-        document.getElementById("thinking").remove();
-        addMessage("Bot", "Error — is the server running?");
+        removeTyping();
+        addMessage("bot", "माफ गर्नुहोस्, सर्भरसँग जडान भएन। कृपया server.py चलिरहेको छ भनेर जाँच गर्नुहोस्।");
       }
     }
 
-    function addMessage(sender, text, id) {
+    function addMessage(type, text) {
+      const msgs = document.getElementById("messages");
       const div = document.createElement("div");
-        //   div.innerHTML = "<b>" + sender + ":</b> " + text;
-        div.innerHTML = "<b>" + sender + ":</b><br>" + text.replace(/\n/g, "<br>");
-      if (id) div.id = id;
-      document.getElementById("messages").appendChild(div);
-      div.scrollIntoView();
+      div.className = "message " + type;
+
+      const avatar = document.createElement("div");
+      avatar.className = "avatar";
+      avatar.textContent = type === "bot" ? "🏛️" : "👤";
+
+      const bubble = document.createElement("div");
+      bubble.className = "bubble";
+      bubble.innerHTML = text.replace(/\n/g, "<br>");
+
+      div.appendChild(avatar);
+      div.appendChild(bubble);
+      msgs.appendChild(div);
+      msgs.scrollTop = msgs.scrollHeight;
     }
 
-    // // Voice input
-    // let recognition;
-    // function toggleVoice() {
-    //   if (!("webkitSpeechRecognition" in window || "SpeechRecognition" in window)) {
-    //     alert("Voice input only works in Chrome.");
-    //     return;
-    //   }
-    //   if (!recognition) {
-    //     recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-    //     recognition.lang = "ne-NP";
-    //     recognition.onresult = (e) => {
-    //       document.getElementById("user-input").value = e.results[0][0].transcript;
-    //       toggleVoice();
-    //       sendMessage();
-    //     };
-    //     recognition.onend = () => {
-    //       document.getElementById("mic-btn").textContent = "🎤";
-    //     };
-    //   }
-    //   document.getElementById("mic-btn").textContent = "🔴";
-    //   recognition.start();
-    // }
+    function addTyping() {
+      const msgs = document.getElementById("messages");
+      const div = document.createElement("div");
+      div.className = "message bot typing";
+      div.id = "typing-indicator";
 
-    // Press Enter to send
+      const avatar = document.createElement("div");
+      avatar.className = "avatar";
+      avatar.textContent = "🏛️";
+
+      const bubble = document.createElement("div");
+      bubble.className = "bubble";
+      bubble.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+
+      div.appendChild(avatar);
+      div.appendChild(bubble);
+      msgs.appendChild(div);
+      msgs.scrollTop = msgs.scrollHeight;
+    }
+
+    function removeTyping() {
+      const t = document.getElementById("typing-indicator");
+      if (t) t.remove();
+    }
+
     document.getElementById("user-input").addEventListener("keydown", (e) => {
       if (e.key === "Enter") sendMessage();
     });
