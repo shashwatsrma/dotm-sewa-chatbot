@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DoTM Sewa Chatbot</title>
+</head>
+<body>
+
+  <h2>DoTM Sewa Chatbot</h2>
+  <p>Ask in Nepali, English, or Romanized Nepali</p>
+
+  <div id="messages" style="height:400px; overflow-y:auto; border:1px solid #ccc; padding:10px; margin-bottom:10px;">
+    <div><b>Bot:</b> नमस्ते! सवारी सम्बन्धी जानकारीको लागि सोध्नुहोस्। Hello! Ask me anything about DoTM driving license services.</div>
+  </div>
+
+  <input id="user-input" type="text" placeholder="Type your question..." style="width:70%" />
+  <button onclick="sendMessage()">Send</button>
+  <button id="mic-btn" onclick="toggleVoice()">🎤</button>
+
+  <script>
+    const SERVER = "http://127.0.0.1:5000/chat";
+
+    async function sendMessage() {
+      const input = document.getElementById("user-input");
+      const text = input.value.trim();
+      if (!text) return;
+
+      addMessage("You", text);
+      input.value = "";
+      addMessage("Bot", "Thinking...", "thinking");
+
+      try {
+        const res = await fetch(SERVER, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: text })
+        });
+        const data = await res.json();
+        document.getElementById("thinking").remove();
+        addMessage("Bot", data.reply);
+      } catch (e) {
+        document.getElementById("thinking").remove();
+        addMessage("Bot", "Error — is the server running?");
+      }
+    }
+
+    function addMessage(sender, text, id) {
+      const div = document.createElement("div");
+        //   div.innerHTML = "<b>" + sender + ":</b> " + text;
+        div.innerHTML = "<b>" + sender + ":</b><br>" + text.replace(/\n/g, "<br>");
+      if (id) div.id = id;
+      document.getElementById("messages").appendChild(div);
+      div.scrollIntoView();
+    }
+
+    // Voice input
+    let recognition;
+    function toggleVoice() {
+      if (!("webkitSpeechRecognition" in window || "SpeechRecognition" in window)) {
+        alert("Voice input only works in Chrome.");
+        return;
+      }
+      if (!recognition) {
+        recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        recognition.lang = "ne-NP";
+        recognition.onresult = (e) => {
+          document.getElementById("user-input").value = e.results[0][0].transcript;
+          toggleVoice();
+          sendMessage();
+        };
+        recognition.onend = () => {
+          document.getElementById("mic-btn").textContent = "🎤";
+        };
+      }
+      document.getElementById("mic-btn").textContent = "🔴";
+      recognition.start();
+    }
+
+    // Press Enter to send
+    document.getElementById("user-input").addEventListener("keydown", (e) => {
+      if (e.key === "Enter") sendMessage();
+    });
+  </script>
+
+</body>
+</html>
