@@ -1,6 +1,6 @@
 # 🇳🇵 DoTM Sewa Chatbot — Nepal Government Transport Services Assistant
 
-A bilingual AI-powered chatbot for Nepal's Department of Transport Management (DoTM) that helps citizens get accurate information about driving license services in **Nepali, English, and Romanized Nepali** — all running **100% locally** on your machine with no internet dependency after setup.
+A bilingual AI-powered chatbot for Nepal's Department of Transport Management (DoTM) that helps citizens get accurate information about driving license services in **Nepali, English, and Romanized Nepali** — all running **100% locally** on your machine with zero cost and no internet dependency after setup.
 
 ---
 
@@ -15,20 +15,36 @@ And get clear, structured, accurate answers instantly — without visiting a gov
 
 ---
 
+## 🖥️ Interface Preview
+
+- Dark navy interface with Nepal government crimson and gold theme
+- Bilingual chat bubbles — Nepali and English
+- Suggested question chips for common queries
+- Typing indicator while AI is thinking
+- Fully responsive layout
+
+---
+
 ## 🏗️ Architecture
 
 ```
 User Question (Nepali / English / Romanized Nepali)
         ↓
+index.html — Chat Interface (HTML + CSS + JS)
+        ↓
+server.py — Flask REST API (port 5000)
+        ↓
+rag.py — RAG Pipeline
+        ↓
 Multilingual Embedding Model (intfloat/multilingual-e5-large-instruct)
         ↓
 Cosine Similarity Search across Knowledge Base Chunks
         ↓
-Most Relevant Chunk Retrieved
+Most Relevant Chunk Retrieved from knowledge_base.json
         ↓
 Gemma2:9b (via Ollama) generates citizen-friendly answer
         ↓
-Answer in same language as user's question
+Answer displayed in same language as user's question
 ```
 
 This is a **RAG (Retrieval Augmented Generation)** architecture — the AI only answers from verified DoTM knowledge base data, never from general training knowledge.
@@ -38,10 +54,13 @@ This is a **RAG (Retrieval Augmented Generation)** architecture — the AI only 
 ## 📂 Project Structure
 
 ```
-dotm-chatbot/
+dotm-sewa-chatbot/
 │
 ├── rag.py                  # Core RAG pipeline — embeddings + retrieval + LLM
-├── knowledge_base.json     # Structured DoTM knowledge base (6 chunks, prototype)
+├── server.py               # Flask REST API server (middleman)
+├── index.html              # Chat interface (frontend)
+├── style.css               # Stylesheet for chat interface
+├── knowledge_base.json     # Structured DoTM knowledge base (prototype — 6 chunks)
 ├── requirements.txt        # Python dependencies
 └── README.md               # This file
 ```
@@ -77,9 +96,11 @@ Current prototype covers **6 chunks** across driving license services:
 | Embedding Model | `intfloat/multilingual-e5-large-instruct` |
 | Language Model | `gemma2:9b` via Ollama |
 | Similarity Search | Cosine similarity (NumPy) |
+| Backend | Python Flask |
+| Frontend | HTML + CSS + JavaScript |
 | Languages Supported | Nepali (Devanagari), English, Romanized Nepali |
 | Runtime | Python 3.9+ |
-| Dependencies | sentence-transformers, ollama, numpy |
+| Cost | Rs. 0 — fully free, fully local |
 
 ---
 
@@ -89,17 +110,18 @@ Current prototype covers **6 chunks** across driving license services:
 - Python 3.9 or higher
 - [Ollama](https://ollama.com) installed
 - macOS / Linux (Windows with WSL also works)
+- Google Chrome (for best experience)
 
 ### Step 1 — Clone the repository
 ```bash
 git clone https://github.com/shashwatsrma/dotm-sewa-chatbot.git
-cd dotm-chatbot
+cd dotm-sewa-chatbot
 ```
 
 ### Step 2 — Create virtual environment
 ```bash
 python3 -m venv venv
-source venv/bin/activate  # Mac/Linux
+source venv/bin/activate
 ```
 
 ### Step 3 — Install dependencies
@@ -112,10 +134,13 @@ pip install -r requirements.txt
 ollama pull gemma2:9b
 ```
 
-### Step 5 — Run the chatbot
+### Step 5 — Start the backend server
 ```bash
-python3 rag.py
+python server.py
 ```
+
+### Step 6 — Open the chat interface
+Open `index.html` in Google Chrome. That's it — your chatbot is running.
 
 ---
 
@@ -153,14 +178,13 @@ Bot: माफ गर्नुहोस्, यो जानकारी मस�
 
 ## 🔭 Roadmap
 
-- [x] Core RAG pipeline
-- [x] Multilingual embedding support (Nepali + English + Romanized)
-- [x] Local LLM via Ollama (no API dependency)
-- [x] Confidence threshold fallback for irrelevant questions
-- [ ] Flask REST API server
-- [ ] Web chat interface (HTML/CSS/JS)
-- [ ] Voice input (Nepali speech-to-text)
+- [x] Phase 1 — Structured bilingual knowledge base from DoTM documents
+- [x] Phase 2 — Multilingual RAG pipeline (embeddings + local LLM)
+- [x] Phase 3 — Flask REST API server
+- [x] Phase 4 — Polished bilingual chat interface
+- [ ] Phase 5 — Voice input (Nepali speech-to-text)
 - [ ] Expand knowledge base to 300-400 chunks
+- [ ] Conversation history (multi-turn memory)
 - [ ] Add citizenship, passport, vehicle registration services
 - [ ] Embeddings cache for fast startup
 
@@ -171,21 +195,11 @@ Bot: माफ गर्नुहोस्, यो जानकारी मस�
 This project is developed as a **BCT Final Year Major Project** at IOE, Tribhuvan University, Nepal.
 
 **Primary Contributions:**
-1. Structured bilingual knowledge base from official DoTM documents
+1. Structured bilingual knowledge base compiled from official DoTM documents
 2. Multilingual semantic retrieval pipeline for Nepali government services
-3. Voice-enabled citizen interface (upcoming)
-4. Fully local deployment — no cloud dependency
-
----
-
-## 📋 Requirements
-
-Create `requirements.txt` with:
-```
-sentence-transformers
-numpy
-ollama
-```
+3. Fully local deployment — no cloud dependency, no API cost
+4. Voice-enabled citizen interface (upcoming)
+5. System is model-agnostic — LLM can be swapped without changing the pipeline
 
 ---
 
@@ -200,10 +214,11 @@ ollama
 
 ## ⚠️ Disclaimer
 
-This chatbot is built for educational purposes as a final year project. Always verify critical information directly from the official DoTM website at [dotm.gov.np](https://dotm.gov.np).
+This chatbot is built for educational purposes as a BCT final year project. Always verify critical information directly from the official DoTM website at [dotm.gov.np](https://dotm.gov.np).
 
 ---
 
 ## 👤 Author
 
 **Shashwat** — BCT Student, IOE Tribhuvan University, Nepal
+GitHub: [shashwatsrma](https://github.com/shashwatsrma)
