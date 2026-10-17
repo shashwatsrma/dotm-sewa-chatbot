@@ -192,7 +192,7 @@ Bot: माफ गर्नुहोस्, यो जानकारी मस�
 
 ## 🎓 Academic Context
 
-This project is developed as a **BCT Final Year Major Project** at IOE, Tribhuvan University, Nepal.
+This project is developed as a PROTOTYPE **BCT Final Year Major Project** at IOE, Tribhuvan University, Nepal.
 
 **Primary Contributions:**
 1. Structured bilingual knowledge base compiled from official DoTM documents
